@@ -1,13 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useSpring, useInView, animate, AnimatePresence } from "motion/react";
-import imgWorker from "figma:asset/8530be59f36fe0a4006e2083bba2627e08f92ed5.png";
-import imgRajesh from "figma:asset/9549fd5f187f521deb59bed58236188244e7e37e.png";
-import imgPriya from "figma:asset/e6300e7f49a1799b3dbc5056412aadcf88a4d696.png";
-import imgSuresh from "figma:asset/9fb0ec14349ee8ac9d0addb5f6c4a1c8a39c3ecf.png";
-import imgSuraj from "figma:asset/085acad74f4a195381a74bd2c62f6301c3af0868.png";
-import imgVivek from "figma:asset/eb0350d4feea4161a271d1eb1071722ad4950768.png";
-import imgVivekKumar from "figma:asset/66ef12a0f10611801b53273f95ccfbabcbe52eec.png";
 import svgPaths from "../imports/svg-14kgwtq3ns";
+
+// Team member photos — served from /public/images/
+// ⚠️ Make sure the folder is named "public" (lowercase) not "Public"
+const imgSuraj      = "/images/suraj.jpeg";
+const imgVivek      = "/images/vivek.jpeg";
+const imgVivekKumar = "/images/badal.jpeg";
+
+// Survey persona & hero photos (Unsplash)
+const imgWorker = "https://images.unsplash.com/photo-1523512090443-2d7df8b40358?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080";
+const imgRajesh = "https://images.unsplash.com/photo-1618228298959-0198d476d2ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400";
+const imgPriya  = "https://images.unsplash.com/photo-1771091052749-1ab149f9158c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400";
+const imgSuresh = "https://images.unsplash.com/photo-1632560962689-da7c2538fc23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400";
 
 // ---- Animation Variants ----
 const fadeUp = {
