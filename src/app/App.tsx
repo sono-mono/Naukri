@@ -596,7 +596,7 @@ function HowItWorks() {
               key={step.num}
               className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center group cursor-default"
               variants={staggerItem}
-              whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(26,60,110,0.12)", borderColor: "rgba(26,60,110,0.2)" }}
+              whileHover={{ y: -6, boxShadow: "0 20px 40px rgba(26,60,110,0.12)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="relative inline-flex mb-6">
@@ -877,7 +877,7 @@ function SurveyInsights() {
               key={item.persona.name}
               className="bg-white rounded-2xl border border-gray-100 shadow-sm flex flex-col overflow-hidden group cursor-default"
               variants={staggerItem}
-              whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(0,0,0,0.10)", borderColor: "rgba(26,60,110,0.15)" }}
+              whileHover={{ y: -6, boxShadow: "0 24px 48px rgba(0,0,0,0.10)" }}
               transition={{ type: "spring", stiffness: 280, damping: 22 }}
             >
               {/* Top accent bar with slide animation */}
@@ -1060,7 +1060,8 @@ function MeetTheBuilder() {
 
               {/* Shimmer on hover */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none"
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent)" }}
                 initial={{ x: "-100%", opacity: 0 }}
                 whileHover={{ x: "200%", opacity: 1 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -1111,8 +1112,9 @@ function MeetTheBuilder() {
                   {builder.tags.map((tag) => (
                     <motion.span
                       key={tag}
-                      className="bg-white/10 text-white/70 text-xs font-medium px-3 py-1 rounded-full cursor-default"
-                      whileHover={{ backgroundColor: "rgba(255,255,255,0.2)", color: "rgba(255,255,255,0.95)" }}
+                      className="text-xs font-medium px-3 py-1 rounded-full cursor-default"
+                      style={{ backgroundColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.7)" }}
+                      whileHover={{ backgroundColor: "rgba(255,255,255,0.22)", color: "rgba(255,255,255,0.95)" }}
                     >
                       {tag}
                     </motion.span>
@@ -1121,13 +1123,13 @@ function MeetTheBuilder() {
 
                 <div className="mx-8 mb-8 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <motion.a href="#" className="bg-white/10 text-white p-2 rounded-lg" aria-label="LinkedIn" whileHover={{ backgroundColor: "rgba(255,255,255,0.25)", scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <motion.a href="#" className="text-white p-2 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} aria-label="LinkedIn" whileHover={{ backgroundColor: "rgba(255,255,255,0.25)", scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 20 18">
                         <path d={svgPaths.p21986800} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.67" />
                         <path d={svgPaths.p6ab2500} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.67" />
                       </svg>
                     </motion.a>
-                    <motion.a href="#" className="bg-white/10 text-white p-2 rounded-lg" aria-label="Twitter" whileHover={{ backgroundColor: "rgba(255,255,255,0.25)", scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                    <motion.a href="#" className="text-white p-2 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.1)" }} aria-label="Twitter" whileHover={{ backgroundColor: "rgba(255,255,255,0.25)", scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 20 20">
                         <path d={svgPaths.p327a8900} stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.67" />
                       </svg>
