@@ -204,7 +204,7 @@ function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <motion.a
-            href="#"
+            href="/"
             className="flex items-center gap-2.5 group"
             whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -243,7 +243,7 @@ function Navbar() {
               IN | BH
             </a>
             <motion.a
-              href="#"
+              href="/auth"
               className="bg-[#1a3c6e] hover:bg-[#15305a] text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-colors"
               whileHover={{ scale: 1.04, boxShadow: "0 4px 20px rgba(26,60,110,0.35)" }}
               whileTap={{ scale: 0.97 }}
@@ -290,7 +290,7 @@ function Navbar() {
               ))}
               <div className="pt-3 border-t border-gray-100 mt-2">
                 <a
-                  href="#"
+                  href="/auth"
                   className="block w-full bg-[#1a3c6e] hover:bg-[#15305a] text-white text-sm font-semibold px-5 py-3 rounded-md transition-colors text-center"
                 >
                   Get Started
@@ -356,7 +356,7 @@ function Hero() {
               transition={{ delay: 0.78, duration: 0.5 }}
             >
               <motion.a
-                href="#"
+                href="/auth"
                 className="inline-flex items-center gap-2 bg-[#1a3c6e] text-white font-semibold px-7 py-3.5 rounded-md"
                 whileHover={{ scale: 1.04, backgroundColor: "#15305a", boxShadow: "0 8px 25px rgba(26,60,110,0.4)" }}
                 whileTap={{ scale: 0.97 }}
@@ -368,7 +368,7 @@ function Hero() {
                 </motion.span>
               </motion.a>
               <motion.a
-                href="#"
+                href="/auth"
                 className="inline-flex items-center gap-2 border-2 border-[rgba(0,0,0,0.12)] text-[#0f172a] font-semibold px-7 py-3.5 rounded-md"
                 whileHover={{ borderColor: "#1a3c6e", color: "#1a3c6e", y: -2 }}
                 whileTap={{ scale: 0.97 }}

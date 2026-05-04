@@ -1,0 +1,121 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  WORKER
+  EMPLOYER
+}
+
+enum PayoutType {
+  HOURLY
+  DAILY
+  MONTHLY
+  FIXED_CONTRACT
+}
+
+enum JobStatus {
+  OPEN
+  IN_PROGRESS
+  CLOSED
+}
+
+enum ApplicationStatus {
+  APPLIED
+  SHORTLISTED
+  HIRED
+  REJECTED
+}
+
+model User {
+  user_id              String           @id @default(uuid())
+  phone_number         String           @unique
+  role                 UserRole?
+  is_verified          Boolean          @default(false)
+  language_preference  String           @default("en")
+  created_at           DateTime         @default(now())
+  workerProfile        WorkerProfile?
+  employerProfile      EmployerProfile?
+
+  @@index([phone_number])
+}
+
+model WorkerProfile {
+  worker_id          String        @id
+  full_name          String
+  skills             Json
+  experience_years   Int
+  location_lat       Float
+  location_lng       Float
+  identity_doc_url   String
+  average_rating     Float         @default(0.0)
+
+  user               User          @relation(fields: [worker_id], references: [user_id], onDelete: Cascade)
+  applications       Application[]
+
+  @@index([location_lat, location_lng])
+}
+
+model EmployerProfile {
+  employer_id                  String       @id
+  company_or_individual_name   String
+  contact_email                String?
+  average_rating               Float        @default(0.0)
+
+  user                         User         @relation(fields: [employer_id], references: [user_id], onDelete: Cascade)
+  jobs                         JobPosting[]
+}
+
+model JobPosting {
+  job_id                  String        @id @default(uuid())
+  employer_id             String
+  title                   String
+  category                String
+  description_text        String
+  description_audio_url   String?
+  location_lat            Float
+  location_lng            Float
+  payout_amount           Int
+  payout_type             PayoutType
+  status                  JobStatus     @default(OPEN)
+  created_at              DateTime      @default(now())
+
+  employer                EmployerProfile @relation(fields: [employer_id], references: [employer_id], onDelete: Cascade)
+  applications            Application[]
+
+  @@index([employer_id])
+  @@index([status, category])
+  @@index([location_lat, location_lng])
+}
+
+model Application {
+  application_id   String            @id @default(uuid())
+  job_id           String
+  worker_id        String
+  status           ApplicationStatus @default(APPLIED)
+  applied_at       DateTime          @default(now())
+
+  job              JobPosting        @relation(fields: [job_id], references: [job_id], onDelete: Cascade)
+  worker           WorkerProfile     @relation(fields: [worker_id], references: [worker_id], onDelete: Cascade)
+
+  @@unique([job_id, worker_id])
+  @@index([job_id])
+  @@index([worker_id])
+}
+
+model OtpCode {
+  otp_id        String    @id @default(uuid())
+  phone_number  String
+  code          String
+  expires_at    DateTime
+  consumed_at   DateTime?
+  attempts      Int       @default(0)
+  created_at    DateTime  @default(now())
+
+  @@index([phone_number, expires_at])
+}
