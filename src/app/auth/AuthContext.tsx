@@ -68,10 +68,10 @@ export function useAuth() {
 
 export function routeForRole(role: UserRole | null): string {
   if (role === "WORKER") {
-    return "/worker/profile";
+    return "/worker/feed";
   }
   if (role === "EMPLOYER") {
-    return "/employer/profile";
+    return "/employer/jobs";
   }
   return "/auth";
 }

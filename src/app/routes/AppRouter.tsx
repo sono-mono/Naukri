@@ -2,12 +2,14 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import App from "../App.tsx";
 import { AuthProvider, routeForRole, useAuth } from "../auth/AuthContext.tsx";
 import { AuthPage } from "../pages/AuthPage.tsx";
-import { EmployerApplicantsPage } from "../pages/employer/EmployerApplicantsPage.tsx";
-import { EmployerJobsPage } from "../pages/employer/EmployerJobsPage.tsx";
-import { EmployerProfilePage } from "../pages/employer/EmployerProfilePage.tsx";
-import { WorkerApplicationsPage } from "../pages/worker/WorkerApplicationsPage.tsx";
+import { WorkerLayout } from "../pages/worker/WorkerLayout.tsx";
 import { WorkerFeedPage } from "../pages/worker/WorkerFeedPage.tsx";
+import { WorkerApplicationsPage } from "../pages/worker/WorkerApplicationsPage.tsx";
 import { WorkerProfilePage } from "../pages/worker/WorkerProfilePage.tsx";
+import { EmployerLayout } from "../pages/employer/EmployerLayout.tsx";
+import { EmployerProfilePage } from "../pages/employer/EmployerProfilePage.tsx";
+import { EmployerJobsPage } from "../pages/employer/EmployerJobsPage.tsx";
+import { EmployerApplicantsPage } from "../pages/employer/EmployerApplicantsPage.tsx";
 import { ProtectedRoute } from "./ProtectedRoute";
 
 function AppHomeGate() {
@@ -54,15 +56,15 @@ export function AppRouter() {
           <Route path="/auth" element={<AuthPage />} />
 
           <Route element={<ProtectedRoute allowedRoles={["WORKER"]} />}>
-            <Route path="/worker/profile" element={<WorkerProfilePage />} />
-            <Route path="/worker/feed" element={<WorkerFeedPage />} />
-            <Route path="/worker/applications" element={<WorkerApplicationsPage />} />
+            <Route path="/worker/feed" element={<WorkerLayout><WorkerFeedPage /></WorkerLayout>} />
+            <Route path="/worker/applications" element={<WorkerLayout><WorkerApplicationsPage /></WorkerLayout>} />
+            <Route path="/worker/profile" element={<WorkerLayout><WorkerProfilePage /></WorkerLayout>} />
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={["EMPLOYER"]} />}>
-            <Route path="/employer/profile" element={<EmployerProfilePage />} />
-            <Route path="/employer/jobs" element={<EmployerJobsPage />} />
-            <Route path="/employer/applicants" element={<EmployerApplicantsPage />} />
+            <Route path="/employer/profile" element={<EmployerLayout><EmployerProfilePage /></EmployerLayout>} />
+            <Route path="/employer/jobs" element={<EmployerLayout><EmployerJobsPage /></EmployerLayout>} />
+            <Route path="/employer/applicants" element={<EmployerLayout><EmployerApplicantsPage /></EmployerLayout>} />
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
